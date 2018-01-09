@@ -18,7 +18,7 @@ class ListShowsPage extends Component {
 
     return (
       <div>
-        <header class="flex justify-between items-center">
+        <header className="flex justify-between items-center">
           <h2>Shows</h2>
           <NavLink to="/create" className="link dim black dib mr3">
             &#43; Create Show

@@ -24,14 +24,14 @@ ReactDOM.render(
       <div className="flex flex-column">
         <header className="bg-black-90 w-100 ph3 pv3 pv4-ns ph4-m ph5-l">
           <h1 className="f1 lh-title">My GraphQL Example</h1>
-          <nav class="f6 fw6 ttu tracked">
+          <nav className="f6 fw6 ttu tracked">
             <NavLink to="/" className="link dim white dib mr3">Home</NavLink>
           </nav>
         </header>
-        <div className="ph5 pt4">
+        <main className="ph5 pt4">
           <Route exact path="/" component={ListShowsPage} />
           <Route path="/create" component={CreateShowPage} />
-        </div>
+        </main>
       </div>
     </Router>
   </ApolloProvider>,

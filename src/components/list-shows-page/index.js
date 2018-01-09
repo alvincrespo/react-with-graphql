@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
+import { NavLink } from 'react-router-dom';
 import './styles.css';
 
 class ListShowsPage extends Component {
@@ -17,12 +18,28 @@ class ListShowsPage extends Component {
 
     return (
       <div>
-        {this.props.allShowsQuery.allShows && this.props.allShowsQuery.allShows.map(show => (
-          <div key={show.id}>
-            <h3>{show.title}</h3>
-            <p>{show.description}</p>
-          </div>
-        ))}
+        <header class="flex justify-between items-center">
+          <h2>Shows</h2>
+          <NavLink to="/create" className="link dim black dib mr3">
+            &#43; Create Show
+          </NavLink>
+        </header>
+        <table className="table-fill">
+          <thead>
+            <tr>
+              <th className="text-left">Title</th>
+              <th className="text-left">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.props.allShowsQuery.allShows && this.props.allShowsQuery.allShows.map(show => (
+              <tr className="text-left" key={show.id}>
+                <td>{show.title}</td>
+                <td>{show.description}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     );
   }

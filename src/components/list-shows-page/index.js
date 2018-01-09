@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import './styles.css';
 
 class ListShowsPage extends Component {
@@ -34,7 +34,7 @@ class ListShowsPage extends Component {
           <tbody>
             {this.props.allShowsQuery.allShows && this.props.allShowsQuery.allShows.map(show => (
               <tr className="text-left" key={show.id}>
-                <td>{show.title}</td>
+                <td><Link to={`/show/${show.id}`}>{show.title}</Link></td>
                 <td>{show.description}</td>
               </tr>
             ))}

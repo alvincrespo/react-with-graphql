@@ -8,6 +8,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
 import ListShowsPage from './components/list-shows-page';
 import CreateShowPage from './components/create-show-page';
+import ShowDetailPage from './components/show-detail-page';
 import 'tachyons';
 import './index.css';
 
@@ -31,6 +32,7 @@ ReactDOM.render(
         <main className="ph5 pt4">
           <Route exact path="/" component={ListShowsPage} />
           <Route path="/create" component={CreateShowPage} />
+          <Route path="/show/:id" component={ShowDetailPage} />
         </main>
       </div>
     </Router>

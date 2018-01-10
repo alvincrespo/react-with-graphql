@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import './styles.css';
@@ -66,4 +66,4 @@ const CreateShowPageWithMutation = graphql(CREATE_SHOW_MUTATION, {
   name: 'createShowMutation'
 })(CreateShowPage);
 
-export default withRouter(CreateShowPageWithMutation)
+export default withRouter(CreateShowPageWithMutation);

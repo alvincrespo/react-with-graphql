@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
 import './styles.css';
 
-export default class CreateShowPage extends Component {
+export default class ShowForm extends Component {
   state = {
     title: '',
     description: ''
+  }
+
+  componentDidMount() {
+    let { title, description } = this.props.show;
+
+    this.setState({ title, description });
   }
 
   handleTitleChange = (e) => {

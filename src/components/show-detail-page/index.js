@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
-import { Link } from 'react-router-dom';
+import { Route } from 'react-router-dom';
+import DetailPage from './detail-page';
+import EditPage from './edit-page';
 import './styles.css';
 
 class ShowDetailPage extends Component {
@@ -16,21 +18,10 @@ class ShowDetailPage extends Component {
       );
     }
 
-    let { Show: show } = this.props.showDetailQuery;
-
     return (
-      <div className="show-detail-page">
-        <header className="flex justify-between items-center">
-          <h2>Show / {show.title}</h2>
-          <nav className="flex justify-between actions items-center">
-            <Link to={`/show/${show.id}/edit`}>Edit</Link>
-            <button className="f6 link dim ph3 pv2 mb2 dib white pa2">
-              Delete
-            </button>
-          </nav>
-        </header>
-        <h3>Description</h3>
-        <p>{show.description}</p>
+      <div>
+        <Route exact path={`${this.props.match.path}`} render={() => <DetailPage {...this.props} />} />
+        <Route path={`${this.props.match.path}/edit`} component={EditPage} />
       </div>
     );
   }

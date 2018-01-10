@@ -32,7 +32,7 @@ ReactDOM.render(
         <main className="ph5 pt4">
           <Route exact path="/" component={ListShowsPage} />
           <Route path="/create" component={CreateShowPage} />
-          <Route path="/show/:id" component={ShowDetailPage} />
+          <Route path="/show/:id" render={(props) => <ShowDetailPage {...props} />} />
         </main>
       </div>
     </Router>

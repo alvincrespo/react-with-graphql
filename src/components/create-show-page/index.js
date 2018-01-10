@@ -22,7 +22,26 @@ class CreateShowPage extends Component {
   }
 
   render() {
-    return <ShowForm onChange={this.onChange} onSubmit={this.onSubmit} />;
+    return (
+      <ShowForm onChange={this.onChange} onSubmit={this.onSubmit}>
+        {(props) => (
+          <div>
+            <props.header>
+              Create Show
+            </props.header>
+            <props.title />
+            <props.description />
+            <props.actions>
+              {(props) => (
+                <props.save>
+                  Create and Save Show
+                </props.save>
+              )}
+            </props.actions>
+          </div>
+        )}
+      </ShowForm>
+    );
   }
 }
 

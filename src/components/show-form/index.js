@@ -8,9 +8,13 @@ export default class ShowForm extends Component {
   }
 
   componentDidMount() {
-    let { title, description } = this.props.show;
+    let { show } = this.props;
 
-    this.setState({ title, description });
+    if (show) {
+      let { title, description } = show;
+
+      this.setState({ title, description });
+    }
   }
 
   handleTitleChange = (e) => {
@@ -41,23 +45,51 @@ export default class ShowForm extends Component {
     return this.state.title === '' || this.state.description === '';
   }
 
+  children = {
+    header: (props) => <h3>{props.children}</h3>,
+    title: () => {
+      let { title } = this.state;
+
+      return (
+        <div className="flex flex-column pb2">
+          <label className="pb1">Title</label>
+          <input type="text" value={title} onChange={this.handleTitleChange} className="pa2" />
+        </div>
+      );
+    },
+    description: () => {
+      let { description } = this.state;
+
+      return (
+        <div className="flex flex-column pb4">
+          <label className="pb1">Description</label>
+          <textarea value={description} onChange={this.handleDescriptionChange} className="pa2"></textarea>
+        </div>
+      );
+    },
+    actions: (props) => {
+      let children = {
+        save: (props) => {
+          return (
+            <button type="submit" className="f6 link dim ph3 pv2 mb2 dib white bg-dark-blue pa2" disabled={this.isDisabled()}>
+              {props.children}
+            </button>
+          );
+        }
+      };
+
+      return (
+        <div className="flex justify-end">
+          {props.children(children)}
+        </div>
+      );
+    }
+  }
+
   render() {
     return (
       <form onSubmit={this.onSubmit} className="flex flex-column create-show">
-        <h2>Create Show</h2>
-        <div className="flex flex-column pb2">
-          <label className="pb1">Title</label>
-          <input type="text" value={this.state.title} onChange={this.handleTitleChange} className="pa2" />
-        </div>
-        <div className="flex flex-column pb4">
-          <label className="pb1">Description</label>
-          <textarea value={this.state.description} onChange={this.handleDescriptionChange} className="pa2"></textarea>
-        </div>
-        <div className="flex justify-end">
-          <button type="submit" className="f6 link dim ph3 pv2 mb2 dib white bg-dark-blue pa2" disabled={this.isDisabled()}>
-            Create Show
-          </button>
-        </div>
+        {this.props.children(this.children)}
       </form>
     );
   }

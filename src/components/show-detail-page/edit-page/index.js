@@ -22,7 +22,24 @@ class EditPage extends Component {
         <header className="flex justify-between items-center">
           <h2>Show / {show.title} / Edit</h2>
         </header>
-        <ShowForm show={show} onChange={this.onChange} />;
+        <ShowForm show={show} onChange={this.onChange}>
+          {(props) => (
+            <div>
+              <props.header>
+                Edit Show
+              </props.header>
+              <props.title />
+              <props.description />
+              <props.actions>
+                {(props) => (
+                  <props.save>
+                    Save Edits
+                  </props.save>
+                )}
+              </props.actions>
+            </div>
+          )}
+        </ShowForm>
       </div>
     );
   }
